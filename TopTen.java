@@ -17,7 +17,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
 
 
 public class TopTen{
-    public static class TopTen_Mapper extends Mapper<Object, 
+    public static class TopTenMapper extends Mapper<Object, 
                             Text, Text, LongWritable> { 
 
         private TreeMap<Long, String> tmap; 
@@ -71,14 +71,12 @@ public class TopTen{
         } 
     } 
 
-    public static class TopTen_Reducer extends Reducer<Text, 
-                     LongWritable, LongWritable, Text> { 
-
+    public static class TopTenReducer extends Reducer<Text, 
+                    LongWritable, LongWritable, Text> { 
         private TreeMap<Long, String> tmap2; 
     
         @Override
-        public void setup(Context context) throws IOException, 
-                                        InterruptedException 
+        public void setup(Context context) throws IOException, InterruptedException 
         { 
             tmap2 = new TreeMap<Long, String>(); 
         } 
@@ -113,8 +111,7 @@ public class TopTen{
         } 
     
         @Override
-        public void cleanup(Context context) throws IOException, 
-                                        InterruptedException 
+        public void cleanup(Context context) throws IOException, InterruptedException 
         { 
             for (Map.Entry<Long, String> entry : tmap2.entrySet())  
             { 
@@ -132,19 +129,17 @@ public class TopTen{
         String[] otherArgs = new GenericOptionsParser(conf, 
                                     args).getRemainingArgs(); 
 
-        // if less than two paths  
-        // provided will show error 
         if (otherArgs.length < 2)  
         { 
-            System.err.println("Error: please provide two paths"); 
+            System.err.println("ERROR path needed"); 
             System.exit(2); 
         } 
 
         Job job = Job.getInstance(conf, "top 10"); 
         job.setJarByClass(Driver.class); 
 
-        job.setMapperClass(TopTen_Mapper.class); 
-        job.setReducerClass(TopTen_Reducer.class); 
+        job.setMapperClass(TopTenMapper.class); 
+        job.setReducerClass(TopTenReducer.class); 
 
         job.setMapOutputKeyClass(Text.class); 
         job.setMapOutputValueClass(LongWritable.class); 
