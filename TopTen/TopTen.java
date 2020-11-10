@@ -35,21 +35,13 @@ public class TopTen{
                         InterruptedException 
         { 
 
-            // input data format => movie_name     
-            // no_of_views  (tab seperated) 
-            // we split the input data 
             String[] tokens = value.toString().split("\t"); 
 
             String name = tokens[0]; 
             long count = Long.parseLong(tokens[1]); 
 
-            // insert data into treeMap, 
-            // we want top 10  viewed movies 
-            // so we pass no_of_views as key 
             tmap.put(count, name); 
 
-            // we remove the first key-value 
-            // if it's size increases 10 
             if (tmap.size() > 10) 
             { 
                 tmap.remove(tmap.firstKey()); 
@@ -86,9 +78,6 @@ public class TopTen{
         Context context) throws IOException, InterruptedException 
         { 
     
-            // input data from mapper 
-            // key                values 
-            // movie_name         [ count ] 
             String name = key.toString(); 
             long count = 0; 
     
@@ -97,13 +86,8 @@ public class TopTen{
                 count = val.get(); 
             } 
     
-            // insert data into treeMap, 
-            // we want top 10 viewed movies 
-            // so we pass count as key 
             tmap2.put(count, name); 
     
-            // we remove the first key-value 
-            // if it's size increases 10 
             if (tmap2.size() > 10) 
             { 
                 tmap2.remove(tmap2.firstKey()); 
