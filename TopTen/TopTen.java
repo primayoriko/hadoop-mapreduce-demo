@@ -62,7 +62,7 @@ public class TopTen{
     } 
 
     public static class TopTenReducer extends Reducer<Text, 
-                    LongWritable, LongWritable, Text> { 
+                    LongWritable, Text, LongWritable> { 
         private TreeMap<Long, String> record; 
     
         @Override
@@ -100,7 +100,7 @@ public class TopTen{
     
                 long count = entry.getKey(); 
                 String name = entry.getValue(); 
-                context.write(new LongWritable(count), new Text(name)); 
+                context.write(new Text(name), new LongWritable(count)); 
             } 
         } 
     } 

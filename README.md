@@ -91,10 +91,18 @@ I should say that this is my first hadoop try, and I found that this program a b
 
 -------
 
-1. dsa
-2. sd
-3. as
-4. dsa
+1. Navigate to `Average` folder for make it easier
+2. Compile the java file or `Average.java` file and link it with needed hadoop library in `%HADOOP_HOME%\share\hadoop`, for example with this code
+    ```
+    javac -classpath "D:\ProgramData\Hadoop\hadoop-3.3.0\share\hadoop\common\*";"D:\ProgramData\Hadoop\hadoop-3.3.0\share\hadoop\mapreduce\*" -d Average/ Average.java
+    ```
+
+3. Create jar file from the classes, for example with this code
+    ```
+    jar -cvf Average.jar -C Average/ .
+    ```
+
+As an example, this is compilating step in my test ![tt](docs/Average.png)
 
 ### Run
 

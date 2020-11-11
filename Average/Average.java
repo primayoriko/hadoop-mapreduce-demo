@@ -1,7 +1,7 @@
 import java.io.*; 
 import java.util.*; 
-import java.util.Map; 
-import java.util.TreeMap; 
+// import java.util.Map; 
+// import java.util.TreeMap; 
 
 import org.apache.hadoop.io.Text; 
 import org.apache.hadoop.io.LongWritable; 
@@ -19,16 +19,8 @@ import org.apache.hadoop.util.GenericOptionsParser;
 public class Average{
     public static class AverageMapper extends Mapper<Object, 
                             Text, Text, LongWritable> { 
-
-        // private TreeMap<Long, String> tmap; 
-
-        // @Override
-        // public void setup(Context context) throws IOException, 
-        //                                 InterruptedException 
-        // { 
-        //     tmap = new TreeMap<Long, String>(); 
-        // } 
-
+        private LongWritable result = new LongWritable();
+        
         @Override
         public void map(Object key, Text value, 
             Context context) throws IOException, InterruptedException 
@@ -36,75 +28,33 @@ public class Average{
             String[] tokens = value.toString().split(" "); 
 
             String name = tokens[0]; 
-            long count = Long.parseLong(tokens[1]); 
+            long val = Long.parseLong(tokens[1]); 
 
-            context.write(new Text(name), new Pair<Integer, Integer>(count, 1));
-
-            // tmap.put(count, name); 
-
-            // if (tmap.size() > 10) 
-            // { 
-            //     tmap.remove(tmap.firstKey()); 
-            // } 
+            result.set(val);
+            context.write(new Text(name), result);
         } 
-
-        // @Override
-        // public void cleanup(Context context) throws IOException, 
-        //                                 InterruptedException 
-        // { 
-        //     for (Map.Entry<Long, String> entry : tmap.entrySet())  
-        //     { 
-
-        //         long count = entry.getKey(); 
-        //         String name = entry.getValue(); 
-
-        //         context.write(new Text(name), new LongWritable(count)); 
-        //     } 
-        // } 
     } 
 
     public static class AverageReducer extends Reducer<Text, 
-                    LongWritable, LongWritable, Text> { 
-        // private TreeMap<Long, String> tmap2; 
-    
-        // @Override
-        // public void setup(Context context) throws IOException, InterruptedException 
-        // { 
-        //     tmap2 = new TreeMap<Long, String>(); 
-        // } 
-    
+                    LongWritable, Text, LongWritable> { 
+        private LongWritable result = new LongWritable();
+        
         @Override
-        public void reduce(Text key, Iterable<Pair<Integer, Integer>> values, 
+        public void reduce(Text key, Iterable<LongWritable> values, 
         Context context) throws IOException, InterruptedException 
         { 
-    
             String name = key.toString(); 
-            long count = 0; 
+            long sum = 0, count = 0; 
     
             for (LongWritable val : values) 
             { 
-                count = val.get(); 
+                sum += val.get();
+                count += 1;
             } 
-    
-            tmap2.put(count, name); 
-    
-            if (tmap2.size() > 10) 
-            { 
-                tmap2.remove(tmap2.firstKey()); 
-            } 
+
+            result.set(sum/count);
+            context.write(key, result);
         } 
-    
-        // @Override
-        // public void cleanup(Context context) throws IOException, InterruptedException 
-        // { 
-        //     for (Map.Entry<Long, String> entry : tmap2.entrySet())  
-        //     { 
-    
-        //         long count = entry.getKey(); 
-        //         String name = entry.getValue(); 
-        //         context.write(new LongWritable(count), new Text(name)); 
-        //     } 
-        // } 
     } 
 
     public static void main(String[] args) throws Exception 
