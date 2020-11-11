@@ -23,9 +23,9 @@ I should say that this is my first hadoop try, and I found that this program a b
 
 -------
 
-1. Word Count
-2. Average
-3. Top Ten
+1. Word Count, counting every word (separated by whitespace) occurences in a text file.
+2. Average, counting average transaction value from every ID (each ID could have multiple transactions).
+3. Top Ten, searching top ten transaction with most value.
 
 
 ## Word Count
