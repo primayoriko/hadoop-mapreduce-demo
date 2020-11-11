@@ -20,13 +20,13 @@ public class TopTen{
     public static class TopTenMapper extends Mapper<Object, 
                             Text, Text, LongWritable> { 
 
-        private TreeMap<Long, String> tmap; 
+        private TreeMap<Long, String> record; 
 
         @Override
         public void setup(Context context) throws IOException, 
                                         InterruptedException 
         { 
-            tmap = new TreeMap<Long, String>(); 
+            record = new TreeMap<Long, String>(); 
         } 
 
         @Override
@@ -38,11 +38,11 @@ public class TopTen{
             String name = tokens[0]; 
             long count = Long.parseLong(tokens[1]); 
 
-            tmap.put(count, name); 
+            record.put(count, name); 
 
-            if (tmap.size() > 10) 
+            if (record.size() > 10) 
             { 
-                tmap.remove(tmap.firstKey()); 
+                record.remove(record.firstKey()); 
             } 
         } 
 
@@ -50,7 +50,7 @@ public class TopTen{
         public void cleanup(Context context) throws IOException, 
                                         InterruptedException 
         { 
-            for (Map.Entry<Long, String> entry : tmap.entrySet())  
+            for (Map.Entry<Long, String> entry : record.entrySet())  
             { 
 
                 long count = entry.getKey(); 
@@ -63,12 +63,12 @@ public class TopTen{
 
     public static class TopTenReducer extends Reducer<Text, 
                     LongWritable, LongWritable, Text> { 
-        private TreeMap<Long, String> tmap2; 
+        private TreeMap<Long, String> record; 
     
         @Override
         public void setup(Context context) throws IOException, InterruptedException 
         { 
-            tmap2 = new TreeMap<Long, String>(); 
+            record = new TreeMap<Long, String>(); 
         } 
     
         @Override
@@ -84,18 +84,18 @@ public class TopTen{
                 count = val.get(); 
             } 
     
-            tmap2.put(count, name); 
+            record.put(count, name); 
     
-            if (tmap2.size() > 10) 
+            if (record.size() > 10) 
             { 
-                tmap2.remove(tmap2.firstKey()); 
+                record.remove(record.firstKey()); 
             } 
         } 
     
         @Override
         public void cleanup(Context context) throws IOException, InterruptedException 
         { 
-            for (Map.Entry<Long, String> entry : tmap2.entrySet())  
+            for (Map.Entry<Long, String> entry : record.entrySet())  
             { 
     
                 long count = entry.getKey(); 
