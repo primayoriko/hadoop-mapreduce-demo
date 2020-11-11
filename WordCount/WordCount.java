@@ -32,7 +32,6 @@ public class WordCount {
             }
     }
 
-    // Reduce function
     public static class CountReducer extends Reducer<Text, IntWritable, Text, IntWritable>{        
         private IntWritable result = new IntWritable();
 
@@ -62,6 +61,7 @@ public class WordCount {
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }

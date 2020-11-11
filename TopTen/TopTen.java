@@ -31,11 +31,9 @@ public class TopTen{
 
         @Override
         public void map(Object key, Text value, 
-        Context context) throws IOException,  
-                        InterruptedException 
+            Context context) throws IOException, InterruptedException 
         { 
-
-            String[] tokens = value.toString().split("\t"); 
+            String[] tokens = value.toString().split(" "); 
 
             String name = tokens[0]; 
             long count = Long.parseLong(tokens[1]); 
@@ -110,18 +108,10 @@ public class TopTen{
     public static void main(String[] args) throws Exception 
     { 
         Configuration conf = new Configuration(); 
-        String[] otherArgs = new GenericOptionsParser(conf, 
-                                    args).getRemainingArgs(); 
 
-        if (otherArgs.length < 2)  
-        { 
-            System.err.println("ERROR path needed"); 
-            System.exit(2); 
-        } 
-
-        Job job = Job.getInstance(conf, "top 10"); 
-        job.setJarByClass(Driver.class); 
-
+        Job job = Job.getInstance(conf, "topten"); 
+        
+        job.setJarByClass(TopTen.class); 
         job.setMapperClass(TopTenMapper.class); 
         job.setReducerClass(TopTenReducer.class); 
 
@@ -131,8 +121,8 @@ public class TopTen{
         job.setOutputKeyClass(LongWritable.class); 
         job.setOutputValueClass(Text.class); 
 
-        FileInputFormat.addInputPath(job, new Path(otherArgs[0])); 
-        FileOutputFormat.setOutputPath(job, new Path(otherArgs[1])); 
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
         System.exit(job.waitForCompletion(true) ? 0 : 1); 
     } 
