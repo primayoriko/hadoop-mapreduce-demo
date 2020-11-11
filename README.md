@@ -45,7 +45,8 @@ I should say that this is my first hadoop try, and I found that this program a b
     jar -cvf WordCount.jar -C WordCount/ .
     ```
 
-As an example, this is compilating step in my test ![wc](docs/wordcount.png)
+As an example, this is compilation step in my test
+![wc](docs/wordcount.png)
 
 
 ### Run
@@ -76,16 +77,19 @@ As an example, this is compilating step in my test ![wc](docs/wordcount.png)
     hadoop fs -ls /input9
     ```
 
-    it would show something like this, ![wc-0](docs/wordcount-0.png)
+    it would show something like this,
+    ![wc-0](docs/wordcount-0.png)
 
 5. Run hadoop `.jar` program by input directory is the directory that has just been created, and output directory is a new or non-existent directory, for example by this code
     ```
     hadoop jar WordCount.jar WordCount /input9 /output9
     ```
 
-    just wait first and would show something like this, ![wc-1](docs/wordcount-1.png)
+    just wait first and would show something like this,
+    ![wc-1](docs/wordcount-1.png)
 
-6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example ![wc-2](docs/wordcount-2.png) 
+6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example
+    ![wc-2](docs/wordcount-2.png) 
 
 
 ## Average
@@ -105,7 +109,8 @@ As an example, this is compilating step in my test ![wc](docs/wordcount.png)
     jar -cvf Average.jar -C Average/ .
     ```
 
-As an example, this is compilating step in my test ![av](docs/average.png)
+As an example, this is compilation step in my test
+![av](docs/average.png)
 
 ### Run
 
@@ -135,16 +140,19 @@ As an example, this is compilating step in my test ![av](docs/average.png)
     hadoop fs -ls /input11
     ```
 
-    it would show something like this, ![av-0](docs/average-0.png)
+    it would show something like this,
+    ![av-0](docs/average-0.png)
 
 5. Run hadoop `.jar` program by input directory is the directory that has just been created, and output directory is a new or non-existent directory, for example by this code
     ```
     hadoop jar Average.jar Average /input11 /output11
     ```
 
-    just wait first and would show something like this, ![av-1](docs/average-1.png)
+    just wait first and would show something like this,
+    ![av-1](docs/average-1.png)
 
-6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example ![av-2](docs/average-2.png) 
+6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example
+   ![av-2](docs/average-2.png) 
 
 ## Top Ten
 
@@ -163,7 +171,8 @@ As an example, this is compilating step in my test ![av](docs/average.png)
     jar -cvf TopTen.jar -C TopTen/ .
     ```
 
-As an example, this is compilating step in my test ![tt](docs/topten.png)
+As an example, this is compilation step in my test
+![tt](docs/topten.png)
 
 ### Run
 
@@ -193,13 +202,16 @@ As an example, this is compilating step in my test ![tt](docs/topten.png)
     hadoop fs -ls /input10
     ```
 
-    it would show something like this, ![tt-0](docs/topten-0.png)
+    it would show something like this,
+    ![tt-0](docs/topten-0.png)
 
 5. Run hadoop `.jar` program by input directory is the directory that has just been created, and output directory is a new or non-existent directory, for example by this code
     ```
     hadoop jar TopTen.jar TopTen /input10 /output10
     ```
 
-    just wait first and would show something like this, ![tt-1](docs/topten-1.png)
+    just wait first and would show something like this,
+    ![tt-1](docs/topten-1.png)
 
-6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example ![tt-2](docs/topten-2.png) 
+6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example
+   ![tt-2](docs/topten-2.png) 
