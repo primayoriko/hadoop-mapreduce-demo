@@ -7,10 +7,10 @@
 -------
 When compile & run this program, this is dependenciees I've used:
 
-1. Hadoop 3.3.0
+1. [Hadoop 3.3.0](https://hadoop.apache.org/releases.html)
 2. Hadoop 3.3.0 Fixes, I've included this in `hadoop-3.3.0-configs.zip` in this project
-3. JDK 8
-4. Windows 10 as operating system
+3. [JDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) (Java Development Kit 8)
+4. [Windows 10](https://www.microsoft.com/en-us/software-download/windows10) as operating system
 
 ## Practice recommended
 
@@ -46,6 +46,7 @@ I should say that this is my first hadoop try, and I found that this program a b
     ```
 
 As an example, this is compilation step in my test
+
 ![wc](docs/wordcount.png)
 
 
@@ -78,6 +79,7 @@ As an example, this is compilation step in my test
     ```
 
     it would show something like this,
+
     ![wc-0](docs/wordcount-0.png)
 
 5. Run hadoop `.jar` program by input directory is the directory that has just been created, and output directory is a new or non-existent directory, for example by this code
@@ -86,9 +88,11 @@ As an example, this is compilation step in my test
     ```
 
     just wait first and would show something like this,
+
     ![wc-1](docs/wordcount-1.png)
 
 6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example
+   
     ![wc-2](docs/wordcount-2.png) 
 
 
@@ -110,6 +114,7 @@ As an example, this is compilation step in my test
     ```
 
 As an example, this is compilation step in my test
+
 ![av](docs/average.png)
 
 ### Run
@@ -141,6 +146,7 @@ As an example, this is compilation step in my test
     ```
 
     it would show something like this,
+
     ![av-0](docs/average-0.png)
 
 5. Run hadoop `.jar` program by input directory is the directory that has just been created, and output directory is a new or non-existent directory, for example by this code
@@ -149,9 +155,11 @@ As an example, this is compilation step in my test
     ```
 
     just wait first and would show something like this,
+
     ![av-1](docs/average-1.png)
 
 6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example
+   
    ![av-2](docs/average-2.png) 
 
 ## Top Ten
@@ -172,6 +180,7 @@ As an example, this is compilation step in my test
     ```
 
 As an example, this is compilation step in my test
+
 ![tt](docs/topten.png)
 
 ### Run
@@ -203,6 +212,7 @@ As an example, this is compilation step in my test
     ```
 
     it would show something like this,
+
     ![tt-0](docs/topten-0.png)
 
 5. Run hadoop `.jar` program by input directory is the directory that has just been created, and output directory is a new or non-existent directory, for example by this code
@@ -211,7 +221,9 @@ As an example, this is compilation step in my test
     ```
 
     just wait first and would show something like this,
+
     ![tt-1](docs/topten-1.png)
 
 6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example
+   
    ![tt-2](docs/topten-2.png) 
