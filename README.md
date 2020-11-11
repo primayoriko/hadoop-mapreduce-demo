@@ -17,7 +17,7 @@ When compile & run this program, this is dependenciees I've used:
 -------
 I should say that this is my first hadoop try, and I found that this program a bit buggy for me, and need a loot of manual configuration, so this is my advices for you,
 
-1. Run `start-dfs` and `start-yarn` as ADMIN, when not as ADMIN I found the `HDFS` an d`yarn` service couldm;t run properly.
+1. Run `start-dfs` and `start-yarn` as ADMIN, when not as ADMIN I found the `HDFS` an d`yarn` service couldn't run properly.
 
 ## Algortihm Included
 
@@ -44,6 +44,9 @@ I should say that this is my first hadoop try, and I found that this program a b
     ```
     jar -cvf WordCount.jar -C WordCount/ .
     ```
+
+As an example, this is compilating step in my test ![wc](docs/wordcount.png)
+
 
 ### Run
 
@@ -102,17 +105,46 @@ I should say that this is my first hadoop try, and I found that this program a b
     jar -cvf Average.jar -C Average/ .
     ```
 
-As an example, this is compilating step in my test ![tt](docs/Average.png)
+As an example, this is compilating step in my test ![av](docs/Average.png)
 
 ### Run
 
 -------
 
-1. dsa
-2. sd
-3. as
-4. dsa
+1. Make sure that `HDFS` and `yarn` service already started, by running these command (my advice run in the terminal as ADMINISTRATOR)
+    ```
+    start-dfs
+    start-yarn
+    ```
 
+    I've already included `%HADOOP%_HOME\sbin` in the PATH, so that should be work.
+
+2. Write the text file that want to be counted, for example `average.txt` that I want to create here
+3. Create a directory in hadoop as the input directory, for example here `/input11` by running this command
+    ```
+    hadoop fs -mkdir /input11
+    ```
+
+4. Place your text file into hadoop directory that already created (should be empty), for example by this code
+    ```
+    hadoop fs -put average.txt /input11
+    ```
+
+    make sure it already created by `ls` command in hadoop, for example by this code
+    ```
+    hadoop fs -ls /input11
+    ```
+
+    it would show something like this, ![av-0](docs/Average-0.png)
+
+5. Run hadoop `.jar` program by input directory is the directory that has just been created, and output directory is a new or non-existent directory, for example by this code
+    ```
+    hadoop jar Average.jar Average /input11 /output11
+    ```
+
+    just wait first and would show something like this, ![av-1](docs/Average-1.png)
+
+6. After finish, explore the output directory and try to `cat` file there, and you should find the result there, as in this example ![av-2](docs/Average-2.png) 
 
 ## Top Ten
 
@@ -153,12 +185,12 @@ As an example, this is compilating step in my test ![tt](docs/topten.png)
 
 4. Place your text file into hadoop directory that already created (should be empty), for example by this code
     ```
-    hadoop fs -put TopTen.txt /input10
+    hadoop fs -put topten.txt /input10
     ```
 
     make sure it already created by `ls` command in hadoop, for example by this code
     ```
-    hadoop fs -ls /input9
+    hadoop fs -ls /input10
     ```
 
     it would show something like this, ![tt-0](docs/TopTen-0.png)
